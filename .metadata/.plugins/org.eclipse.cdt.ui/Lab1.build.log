@@ -1,0 +1,16 @@
+15:14:49 **** Incremental Build of configuration Debug for project Lab1 ****
+make all 
+Building file: ../src/Lab1.cu
+Invoking: NVCC Compiler
+/usr/local/cuda-10.1/bin/nvcc -G -g -O0 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/Lab1.d" "../src/Lab1.cu"
+/usr/local/cuda-10.1/bin/nvcc -G -g -O0 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/Lab1.o" "../src/Lab1.cu"
+Finished building: ../src/Lab1.cu
+ 
+Building target: Lab1
+Invoking: NVCC Linker
+/usr/local/cuda-10.1/bin/nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61 -link -o  "Lab1"  ./src/Lab1.o   
+Finished building target: Lab1
+ 
+
+15:14:51 Build Finished (took 2s.165ms)
+

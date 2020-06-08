@@ -1,0 +1,18 @@
+20:58:37 **** Incremental Build of configuration Release for project Lab5Test ****
+make all 
+make: Warning: File 'objects.mk' has modification time 0.044 s in the future
+Building file: ../src/Lab5Test.cu
+Invoking: NVCC Compiler
+/usr/local/cuda-10.2/bin/nvcc -O3 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/Lab5Test.d" "../src/Lab5Test.cu"
+/usr/local/cuda-10.2/bin/nvcc -O3 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/Lab5Test.o" "../src/Lab5Test.cu"
+Finished building: ../src/Lab5Test.cu
+ 
+Building target: Lab5Test
+Invoking: NVCC Linker
+/usr/local/cuda-10.2/bin/nvcc --cudart static --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61 -link -o  "Lab5Test"  ./src/Lab5Test.o   
+Finished building target: Lab5Test
+ 
+make: warning: Clock skew detected. Your build may be incomplete.
+
+20:58:38 Build Finished (took 1s.562ms)
+

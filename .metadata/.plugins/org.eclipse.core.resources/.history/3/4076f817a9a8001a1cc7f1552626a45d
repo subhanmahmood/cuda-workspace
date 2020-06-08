@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <math.h>
+#include <cuda.h>
+
+#define BLOCK_SIZE 32
+
+void arrayNumGen(int array_size ,float * array)
+{
+
+    for(int i = 0 ; i< array_size ; i++){
+        *(array + i) = (float)(1);
+    }
+
+}
+
+__global__ void Reduce(float * d_array, float * d_out)
+{
+    //# global index for array
+    int global_idx = threadIdx.x + blockDim.x * blockIdx.x;
+
+    //# local threadID within each block
+    int index = threadIdx.x;
+
+    //static shared memory
+    __shared__ float shared[BLOCK_SIZE];
+    //load values from global memory into shared memory
+    shared[index] = d_array[global_idx];
+    __syncthreads(); // check process is complete before continuing
+
+    //# Reduction loop for each block
+    for(int i = blockDim.x/2 ; i > 0 ; i >>= 1){
+        if(index < i){
+            shared[index] += shared[index + i];
+        }
+
+        //# complete one process before using the threads again
+        __syncthreads();
+
+    }
+
+
+    if(index == 0){
+    	// first index of shared memory contains the reduce of the block
+        d_out[blockIdx.x] = shared[0];
+    }
+
+}
+
+void init_reduce(int array_size, float * h_array, float * returnReduce)
+{
+	//setting up Cuda timer
+	cudaEvent_t start,stop;
+	cudaEventCreate(&start);
+	cudaEventCreate(&stop);
+
+	//allocate memory for input array
+    float * d_array;
+    size_t size = array_size * sizeof(float);
+    cudaMallocManaged(&d_array, size);
+    //copy all elements from h_array to d_array and load it into device memory
+    cudaMemcpy(d_array, h_array, size, cudaMemcpyHostToDevice);
+
+    //allocate memory for output array and load it into device memory
+    float * d_out;
+    size_t returnSize = array_size/BLOCK_SIZE * sizeof(float);
+    cudaMalloc(&d_out, size);
+
+    //# find grid dimension based on input size
+    int gridDim = array_size/BLOCK_SIZE;
+
+    //start timing event
+    cudaEventRecord(start);
+    // involve kernel to reduce original array size -> block size
+    Reduce<<< gridDim, BLOCK_SIZE>>>(d_array, d_out);
+    // block further code execution until operations on the GPU has finished
+    cudaDeviceSynchronize();
+    // call kernel again to store final reduce in 1st index of d_out
+    Reduce<<< 1, BLOCK_SIZE>>>(d_out, d_out);
+    // block further code execution until operations on the GPU has finished
+    cudaDeviceSynchronize();
+
+    // stop event record
+    cudaEventRecord(stop);
+
+    // copy values from d_out to returnReduce
+    cudaMemcpy(returnReduce, d_out, returnSize, cudaMemcpyDeviceToHost);
+
+
+    cudaEventSynchronize(stop);
+
+    // show execution time of kernel
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds,start, stop);
+    printf("Elapsed time was: %f\n", milliseconds);
+
+    //free memory allocated on device
+    cudaFree(d_array);
+    cudaFree(d_out);
+}
+int main()
+{
+	// setting input array size
+    int array_size = 1<<15;
+
+    //allocating memory for input array on host
+    size_t size = array_size * sizeof(float);
+    float * h_array = (float *)malloc(size);
+
+    // allocating appropriate memory for output on host
+    size_t returnSize = array_size/BLOCK_SIZE * sizeof(float);
+    float * returnReduce = (float *)malloc(returnSize);
+
+    //Generate array input values
+    arrayNumGen(array_size, h_array);
+
+    //print input values to the console
+    printf("Input: ");
+//    for(int i = 0; i < array_size; i++){
+//        printf("%.1f ", h_array[i]);
+//        if(i == 35){
+//            printf("\n       ");
+//        }
+//   }
+
+    // call function to initialise reduce on device
+    init_reduce(array_size, h_array, returnReduce);
+
+    //print output after calculations
+    printf("\nOutput: ");
+    printf("%.1f ", returnReduce[0]);
+
+//    for(int i = 0; i < (array_size/BLOCK_SIZE); i++){
+//        printf("%.1f ", returnReduce[i]);
+//    }
+}

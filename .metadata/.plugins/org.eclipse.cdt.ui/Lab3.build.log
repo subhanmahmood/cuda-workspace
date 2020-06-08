@@ -1,0 +1,163 @@
+13:56:12 **** Incremental Build of configuration Debug for project Lab3 ****
+make all 
+Building file: ../src/Lab3.cu
+Invoking: NVCC Compiler
+/usr/local/cuda-10.1/bin/nvcc -G -g -O0 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "src/Lab3.d" "../src/Lab3.cu"
+/usr/local/cuda-10.1/bin/nvcc -G -g -O0 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "src/Lab3.o" "../src/Lab3.cu"
+../src/Lab3.cu(13): error: expected a declaration
+
+../src/Lab3.cu(57): warning: parsing restarts here after previous syntax error
+
+../src/Lab3.cu(61): error: identifier "row" is undefined
+
+../src/Lab3.cu(61): error: identifier "col" is undefined
+
+../src/Lab3.cu(61): error: identifier "Asub" is undefined
+
+../src/Lab3.cu(61): error: identifier "GetElement" is undefined
+
+../src/Lab3.cu(62): error: variable "Bs" has already been defined
+
+../src/Lab3.cu(62): error: identifier "Bsub" is undefined
+
+../src/Lab3.cu(65): error: explicit type is missing ("int" assumed)
+
+../src/Lab3.cu(65): error: cannot overload functions distinguished by return type alone
+
+../src/Lab3.cu(68): error: expected a declaration
+
+../src/Lab3.cu(73): error: explicit type is missing ("int" assumed)
+
+../src/Lab3.cu(73): error: cannot overload functions distinguished by return type alone
+
+../src/Lab3.cu(74): error: expected a declaration
+
+../src/Lab3.cu(77): warning: parsing restarts here after previous syntax error
+
+../src/Lab3.cu(78): error: expected a declaration
+
+../src/Lab3.cu(103): warning: parsing restarts here after previous syntax error
+
+../src/Lab3.cu(104): error: this declaration has no storage class or type specifier
+
+src/subdir.mk:18: recipe for target 'src/Lab3.o' failed
+../src/Lab3.cu(104): error: expected a ";"
+
+../src/Lab3.cu(105): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(105): error: identifier "h_C" is undefined
+
+../src/Lab3.cu(106): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(106): error: expression must have class type
+
+../src/Lab3.cu(107): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(107): error: declaration is incompatible with "int printf(const char *, ...)"
+/usr/local/cuda-10.1/bin/../targets/x86_64-linux/include/crt/common_functions.h(145): here
+
+../src/Lab3.cu(107): error: a value of type "const char *" cannot be used to initialize an entity of type "int"
+
+../src/Lab3.cu(107): error: expected a ")"
+
+../src/Lab3.cu(110): error: identifier "h_B" is undefined
+
+../src/Lab3.cu(110): error: identifier "h_A" is undefined
+
+../src/Lab3.cu(111): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(111): error: declaration is incompatible with "cudaError_t cudaEventRecord(cudaEvent_t, cudaStream_t)"
+/usr/local/cuda-10.1/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h(139): here
+
+../src/Lab3.cu(111): error: identifier "start" is undefined
+
+../src/Lab3.cu(112): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(112): error: expected a ";"
+
+../src/Lab3.cu(113): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(113): error: variable "err" has already been defined
+
+../src/Lab3.cu(114): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(114): error: variable "cudaEventRecord" has already been defined
+
+../src/Lab3.cu(114): error: identifier "stop" is undefined
+
+../src/Lab3.cu(115): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(115): error: variable "err" has already been defined
+
+../src/Lab3.cu(116): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(116): error: variable "printf" has already been defined
+
+../src/Lab3.cu(116): error: a value of type "const char *" cannot be used to initialize an entity of type "int"
+
+../src/Lab3.cu(116): error: expected a ")"
+
+../src/Lab3.cu(118): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(118): error: variable "err" has already been defined
+
+../src/Lab3.cu(118): error: expression must have class type
+
+../src/Lab3.cu(119): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(119): error: variable "printf" has already been defined
+
+../src/Lab3.cu(119): error: a value of type "const char *" cannot be used to initialize an entity of type "int"
+
+../src/Lab3.cu(119): error: expected a ")"
+
+../src/Lab3.cu(121): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(121): error: declaration is incompatible with "cudaError_t cudaEventSynchronize(cudaEvent_t)"
+/usr/local/cuda-10.1/bin/../targets/x86_64-linux/include/cuda_runtime_api.h(2803): here
+
+../src/Lab3.cu(123): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(123): error: declaration is incompatible with "cudaError_t cudaEventElapsedTime(float *, cudaEvent_t, cudaEvent_t)"
+/usr/local/cuda-10.1/bin/../targets/x86_64-linux/include/cuda_runtime_api.h(2873): here
+
+../src/Lab3.cu(123): error: a value of type "float *" cannot be used to initialize an entity of type "int"
+
+../src/Lab3.cu(123): error: expected a ")"
+
+../src/Lab3.cu(124): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(124): error: variable "printf" has already been defined
+
+../src/Lab3.cu(124): error: a value of type "const char *" cannot be used to initialize an entity of type "int"
+
+../src/Lab3.cu(124): error: expected a ")"
+
+../src/Lab3.cu(126): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(126): error: declaration is incompatible with "cudaError_t cudaFree(void *)"
+/usr/local/cuda-10.1/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h(143): here
+
+../src/Lab3.cu(126): error: identifier "d_A" is undefined
+
+../src/Lab3.cu(127): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(127): error: variable "cudaFree" has already been defined
+
+../src/Lab3.cu(127): error: identifier "d_B" is undefined
+
+../src/Lab3.cu(128): error: this declaration has no storage class or type specifier
+
+../src/Lab3.cu(128): error: variable "cudaFree" has already been defined
+
+../src/Lab3.cu(128): error: expression must have class type
+
+../src/Lab3.cu(129): error: expected a declaration
+
+At end of source: warning: parsing restarts here after previous syntax error
+
+69 errors detected in the compilation of "/tmp/tmpxft_00003431_00000000-6_Lab3.cpp1.ii".
+make: *** [src/Lab3.o] Error 1
+
+13:56:13 Build Finished (took 913ms)
+

@@ -1,0 +1,8 @@
+20:39:49 **** Incremental Build of configuration Release for project Lab5 ****
+make all 
+make: Warning: File 'src/subdir.mk' has modification time 0.0038 s in the future
+make: Nothing to be done for 'all'.
+make: warning: Clock skew detected. Your build may be incomplete.
+
+20:39:49 Build Finished (took 171ms)
+

@@ -1,0 +1,8 @@
+22:16:52 **** Incremental Build of configuration Release for project Lab5GPUReduce ****
+make all 
+make: Warning: File 'objects.mk' has modification time 0.049 s in the future
+make: Nothing to be done for 'all'.
+make: warning: Clock skew detected. Your build may be incomplete.
+
+22:16:52 Build Finished (took 60ms)
+
